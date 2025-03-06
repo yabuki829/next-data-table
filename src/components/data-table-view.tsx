@@ -24,8 +24,13 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({ columns, data, onEdi
                 {/* ヘッダー固定 */}
                 <TableHeader className="bg-gray-800 sticky top-0 z-10">
                     <TableRow className="text-white">
-                        {columns.map((col) => (
-                            <TableHead className="text-white" key={col.key}>{col.label}</TableHead>
+                        {columns.map((col, index) => (
+                            <TableHead
+                                key={col.key}
+                                className={`text-white ${index < 3 ? "sticky left-0 z-20 bg-gray-800" : ""}`}
+                            >
+                                {col.label}
+                            </TableHead>
                         ))}
                         <TableHead className="text-white">Actions</TableHead>
                     </TableRow>
@@ -37,7 +42,8 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({ columns, data, onEdi
                             {columns.map((col, colIndex) => (
                                 <TableCell
                                     key={col.key}
-                                    className={colIndex === 0 ? "sticky left-0 bg-white" : ""} // ID列の固定
+                                    className={colIndex < 3 ? "sticky left-0 bg-white z-10" : ""}
+                                    style={colIndex < 3 ? { left: `${colIndex * 200}px` } : {}}
                                 >
                                     {row[col.key]}
                                 </TableCell>
@@ -64,5 +70,3 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({ columns, data, onEdi
         </div>
     )
 }
-
-

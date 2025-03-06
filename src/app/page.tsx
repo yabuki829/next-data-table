@@ -1,5 +1,6 @@
 "use client"
 import { DynamicTable } from "@/components/data-table-view";
+import SplitTable from "@/components/split-table-view";
 
 import Image from "next/image";
 
@@ -54,7 +55,7 @@ export default function Home() {
       <div className="p-4">
         <DynamicTable columns={columns} data={data} onEdit={handleEdit} onDelete={handleDelete} />
       </div>
-
+      <SplitTable />
     </div>
   );
 }
